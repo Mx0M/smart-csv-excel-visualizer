@@ -8,6 +8,7 @@ An embeddable tool that turns `.csv` or `.xlsx` files into interactive charts an
 - Export chart as PNG
 - Shareable hash links (no backend)
 - Works offline, no server needed
+- Works fine up to ~50k–200k rows (JS)
 
   Screenshot
 ![smart-csv-visualizer](/assets/Screenshot_2025-08-23.png)
