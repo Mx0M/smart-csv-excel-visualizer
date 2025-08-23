@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart CSV/Excel Visualizer (Client‑only)</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <!-- Dependencies: Chart.js, PapaParse, SheetJS, LZ-String -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Smart CSV/Excel Visualizer — (100% Client‑side)</h1>
+    </header>
+
+    <div class="wrap grid">
+        <!-- Left: Data + Controls -->
+        <section class="card pad">
+            <h3>1) Add Data</h3>
+            <div class="toolbar">
+                <input id="file" type="file" accept=".csv,.tsv,.txt,.xlsx,.xls" />
+                <input id="url" type="url" placeholder="https://…/data.csv or .xlsx" style="min-width:320px" />
+                <button id="fetchBtn" class="primary">Fetch</button>
+                <button id="sampleBtn" class="ghost">Load Sample</button>
+                <span class="right status" id="status">No file loaded</span>
+            </div>
+            <div id="drop" class="dropzone" style="margin-top:10px">Drag & drop CSV/XLSX here</div>
+
+            <div style="margin-top:14px">
+                <h3>2) Smart Suggestions</h3>
+                <div class="row"><span class="muted">Pick a suggestion to render a chart</span><span class="pill"
+                        id="rowCount">rows: 0</span><span class="pill" id="colCount">cols: 0</span></div>
+                <div class="suggestions" id="suggestions"></div>
+            </div>
+
+            <div style="margin-top:14px">
+                <h3>3) Configure</h3>
+                <div class="kvs">
+                    <label>Chart Type
+                        <select id="chartType">
+                            <option>auto</option>
+                            <option>line</option>
+                            <option>bar</option>
+                            <option>scatter</option>
+                            <option>pie</option>
+                        </select>
+                    </label>
+                    <label>X Column <select id="xCol"></select></label>
+                    <label>Y Column(s) <select id="yCol" multiple size="4"></select></label>
+                    <label>Aggregation
+                        <select id="agg">
+                            <option value="none">none</option>
+                            <option value="sum">sum</option>
+                            <option value="avg">avg</option>
+                            <option value="median">median</option>
+                            <option value="count">count</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <button id="renderBtn" class="primary">Render</button>
+                    <button id="downloadPNG" class="ghost">Export PNG</button>
+                    <button id="shareBtn" class="ghost">Share Link</button>
+                    <span class="muted">Hold Ctrl/Cmd to select multiple Y columns</span>
+                </div>
+                <div style="margin-top:10px">
+                    <h3>Embed</h3>
+                    <textarea id="embedCode" class="mono" readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Chart -->
+        <section class="card pad">
+            <h3>Preview</h3>
+            <canvas id="chart" height="340"></canvas>
+            <div class="row" style="margin-top:10px">
+                <span class="muted">Tip: Try a time column + a numeric column for line charts.</span>
+                <span class="right pill">Local only — no upload</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        Built for demo: CSV/XLSX parsing, type inference, chart suggestions, PNG export, hash‑based sharing & iframe
+        embed. All client‑side.
+    </div>
+
+    <script src="./assets//script.min.js"></script>
+</body>
+
+</html>
