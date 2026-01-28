@@ -10,8 +10,5 @@ An embeddable tool that turns `.csv` or `.xlsx` files into interactive charts an
 - Works offline, no server needed
 - Works fine up to ~50k–200k rows (JS)
 
-## Demo
-👉 [Live Demo](https://try.mkswebs.com/smart-csv-visualizer/)
-
   Screenshot
 ![smart-csv-visualizer](/assets/Screenshot_2025-08-23.png)
